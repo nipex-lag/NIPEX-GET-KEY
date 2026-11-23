@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIPEX SYSTEM • License Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #05050A;
+    --card-bg: rgba(20, 20, 30, 0.6);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text: #FFFFFF;
+    --text-muted: #8A8A9E;
+    --cyan: #00E5FF;
+    --purple: #7000FF;
+    --red: #ff4757;
+    --red-glow: rgba(255, 71, 87, 0.4);
+    --gradient: linear-gradient(135deg, var(--cyan), var(--purple));
+    --gradient-hover: linear-gradient(135deg, #33ebff, #8a33ff);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    overflow: hidden;
+    position: relative;
+    padding: 20px;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.6;
+    animation: float 10s infinite ease-in-out alternate;
+}
+.orb-1 { width: 300px; height: 300px; background: var(--cyan); top: -50px; left: -50px; }
+.orb-2 { width: 400px; height: 400px; background: var(--purple); bottom: -100px; right: -100px; animation-delay: -5s; }
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 50px) scale(1.1); }
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+}
+
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 32px 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.logo-wrapper {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--gradient);
+    padding: 3px;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+.logo-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--bg);
+    display: block;
+}
+
+h1 { font-size: 24px; font-weight: 700; letter-spacing: 2px; margin-bottom: 6px; text-transform: uppercase; }
+.subtitle { font-size: 12px; color: var(--cyan); font-weight: 600; letter-spacing: 1px; margin-bottom: 28px; }
+
+.field-group { text-align: left; margin-bottom: 20px; }
+.label { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 1.5px; margin-bottom: 8px; text-transform: uppercase; display: block; }
+.display-box {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px;
+    font-family: monospace;
+    font-size: 15px;
+    color: var(--text);
+    text-align: center;
+    word-break: break-all;
+    transition: all 0.3s;
+}
+.display-box.highlight {
+    color: var(--cyan);
+    font-size: 20px;
+    font-weight: 700;
+    border-color: rgba(0, 229, 255, 0.3);
+    background: rgba(0, 229, 255, 0.05);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.1) inset;
+}
+
+.countdown-wrapper {
+    display: flex; justify-content: center; align-items: center; gap: 8px;
+    margin-bottom: 24px; font-size: 13px; color: var(--text-muted);
+}
+.timer {
+    font-family: monospace; color: var(--text); background: rgba(255,255,255,0.1);
+    padding: 4px 8px; border-radius: 6px; font-weight: 600;
+}
+
+.btn {
+    width: 100%; padding: 16px; border: none; border-radius: 14px;
+    font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700;
+    letter-spacing: 1px; cursor: pointer; transition: all 0.3s;
+    margin-bottom: 12px; text-transform: uppercase;
+    display: flex; justify-content: center; align-items: center; gap: 8px;
+}
+.btn-primary { background: var(--gradient); color: #000; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.2); }
+.btn-primary:hover { background: var(--gradient-hover); box-shadow: 0 6px 20px rgba(0, 229, 255, 0.4); transform: translateY(-2px); }
+.btn-secondary { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.2); }
+.btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: var(--text); }
+
+.btn-red { 
+    background: linear-gradient(135deg, var(--red), #ff8a7a); 
+    color: #fff; 
+    box-shadow: 0 4px 15px var(--red-glow);
+}
+.btn-red:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6); }
+
+.status {
+    font-size: 11px; color: var(--text-muted); letter-spacing: 1px;
+    margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 6px;
+}
+.status-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan); animation: pulse 2s infinite;
+}
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+#error { color: var(--red); font-size: 12px; margin-top: 12px; display: none; }
+
+.error-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    border-radius: 28px;
+    padding: 40px 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(255, 71, 87, 0.1) inset;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.error-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, transparent 60%);
+    z-index: -1;
+}
+.alert-badge {
+    display: inline-block;
+    background: rgba(255, 71, 87, 0.15);
+    color: var(--red);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+}
+.error-icon-wrapper {
+    width: 90px; height: 90px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    background: rgba(255, 71, 87, 0.05);
+    border: 2px dashed rgba(255, 71, 87, 0.3);
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+    animation: rotateRing 10s linear infinite;
+}
+@keyframes rotateRing { 100% { transform: rotate(360deg); } }
+.error-icon { font-size: 40px; animation: counterRotate 10s linear infinite; }
+@keyframes counterRotate { 100% { transform: rotate(-360deg); } }
+.error-title { font-size: 24px; font-weight: 700; color: var(--red); margin-bottom: 12px; letter-spacing: 1px; }
+.error-text { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 32px; }
+.error-text b { color: var(--text); }
+
+.footer { margin-top: 24px; font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+#mainContainer, #bypassContainer { display: none; }
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<div class="container">
+
+    <div id="bypassContainer">
+        <div class="error-card">
+            <div class="alert-badge">Security Alert</div>
+            <div class="error-icon-wrapper">
+                <div class="error-icon">🚫</div>
+            </div>
+            <div class="error-title">Bypass Detected</div>
+            <div class="error-text">
+                Direct access is <b>restricted</b>.<br>
+                Please open this portal through the official verification steps.
+            </div>
+            <button class="btn btn-red" onclick="location.href='steps.html'">
+                Return to Steps
+            </button>
+        </div>
+        <div class="footer">&copy; NIPEX LAG • SECURE SYSTEM</div>
+    </div>
+
+    <div id="mainContainer">
+        <div class="card">
+            
+            <div class="logo-wrapper">
+                <img src="./assets/logo.png" alt="NIPEX Logo">
+            </div>
+
+            <h1>Nipex Lag</h1>
+            <div class="subtitle">SYSTEM LICENSE PORTAL</div>
+
+            <div class="field-group">
+                <span class="label">Your Public IP</span>
+                <div class="display-box" id="ipAddress">Detecting...</div>
+            </div>
+
+            <div class="field-group">
+                <span class="label">Your License Key</span>
+                <div class="display-box highlight" id="finalKey">Fetching...</div>
+            </div>
+
+            <div class="countdown-wrapper">
+                <span>Expires in</span>
+                <span class="timer" id="countdown">--:--:--</span>
+            </div>
+
+            <button class="btn btn-primary" id="copyBtn" onclick="copyKey()">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                Copy Key
+            </button>
+            
+            <button class="btn btn-secondary" onclick="openTelegram()">Join Telegram</button>
+
+            <div class="status" id="status">
+                <span class="status-dot"></span>
+                <span id="statusText">Connecting to server...</span>
+            </div>
+
+            <div id="error">Network error. Please check your connection.</div>
+        </div>
+        <div class="footer">&copy; NIPEX LAG • SECURE SYSTEM</div>
+    </div>
+
+</div>
+
+<script>
+const IP_API = "https://api.ipify.org?format=json";
+const TELEGRAM_LINK = "https://t.me/nipex_lag";
+const KEY_YEAR = 2026;
+const RESET_HOUR = 6;
+const CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+function checkSecurity() {
+    const params = new URLSearchParams(window.location.search);
+    const source = params.get("source");
+    const referrer = document.referrer || "";
+
+    const allowed =
+        source === "official" ||
+        referrer.includes("vplink.in") ||
+        referrer.includes("vplink.io") ||
+        referrer.includes("lootdest.org") ||
+        referrer.includes("steps.html");
+
+    if (!allowed) {
+        document.getElementById("bypassContainer").style.display = "block";
+        return false;
+    }
+
+    if (source === "official") {
+        const clean = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({}, document.title, clean);
+    }
+
+    document.getElementById("mainContainer").style.display = "block";
+    return true;
+}
+
+function getIndiaTime(){
+    const parts = new Intl.DateTimeFormat("en-US",{
+        timeZone:"Asia/Kolkata",
+        year:"numeric",month:"2-digit",day:"2-digit",
+        hour:"2-digit",minute:"2-digit",second:"2-digit",
+        hourCycle:"h23"
+    }).formatToParts(new Date());
+    const v = {};
+    parts.forEach(p => { if(p.type !== "literal") v[p.type] = Number(p.value); });
+    return {year:v.year, month:v.month, day:v.day, hour:v.hour, minute:v.minute, second:v.second};
+}
+
+function getDailyCycle(){
+    const india = getIndiaTime();
+    let {year, month, day} = india;
+    if(india.hour < RESET_HOUR){
+        const prev = new Date(Date.UTC(year, month-1, day));
+        prev.setUTCDate(prev.getUTCDate() - 1);
+        year = prev.getUTCFullYear(); month = prev.getUTCMonth()+1; day = prev.getUTCDate();
+    }
+    return Math.floor(Date.UTC(year, month-1, day) / 86400000);
+}
+
+function generateKeyFromIP(ip){
+    let s = ip.replace(/\./g, "");
+    if(s.length > 6) s = s.substring(0, 6);
+    const digits = s.replace(/[^0-9]/g, "");
+    const ipSeed = digits ? parseInt(digits, 10) : 0;
+
+    let seed = ipSeed + getDailyCycle() + KEY_YEAR;
+    let key = "NIPEX-";
+    
+    // UPDATED: 3 Blocks ke liye loop 3 tak
+    for(let g = 0; g < 3; g++){
+        if(g > 0) key += "-";
+        for(let i = 0; i < 4; i++){
+            const x = Math.sin(seed++) * 10000;
+            const frac = Math.abs(x - Math.floor(x));
+            key += CHARS.charAt(Math.floor(frac * CHARS.length));
+        }
+    }
+    return key;
+}
+
+function getMillisecondsUntilNextReset(){
+    const india = getIndiaTime();
+    let target = Date.UTC(india.year, india.month-1, india.day, 0, 30, 0); 
+    if(india.hour >= RESET_HOUR) target += 86400000;
+    const delay = target - Date.now();
+    return delay < 1000 ? 1000 : delay;
+}
+
+async function getPublicIP(){
+    const response = await fetch(IP_API, {cache:"no-store"});
+    if(!response.ok) throw new Error("IP request failed");
+    const data = await response.json();
+    if(!data.ip) throw new Error("IP not found");
+    return data.ip.trim();
+}
+
+function updateStatus(text, isError = false) {
+    document.getElementById("statusText").innerText = text;
+    const dot = document.querySelector(".status-dot");
+    if(isError) {
+        dot.style.background = "var(--red)";
+        dot.style.boxShadow = "0 0 8px var(--red)";
+    } else {
+        dot.style.background = "var(--cyan)";
+        dot.style.boxShadow = "0 0 8px var(--cyan)";
+    }
+}
+
+async function generateLockedKey(){
+    const keyEl = document.getElementById("finalKey");
+    const ipEl = document.getElementById("ipAddress");
+    const errorEl = document.getElementById("error");
+
+    keyEl.innerText = "Fetching...";
+    keyEl.classList.remove("highlight");
+    ipEl.innerText = "Detecting...";
+    errorEl.style.display = "none";
+    updateStatus("Getting public IP...");
+
+    try{
+        const ip = await getPublicIP();
+        ipEl.innerText = ip;
+        
+        setTimeout(() => {
+            keyEl.innerText = generateKeyFromIP(ip);
+            keyEl.classList.add("highlight");
+            updateStatus("Key generated successfully!");
+        }, 500);
+
+    }catch(e){
+        console.error(e);
+        ipEl.innerText = "Unavailable";
+        keyEl.innerText = "Offline";
+        keyEl.classList.remove("highlight");
+        updateStatus("Connection failed", true);
+        errorEl.style.display = "block";
+    }
+}
+
+function scheduleDailyRefresh(){
+    setTimeout(async () => {
+        await generateLockedKey();
+        scheduleDailyRefresh();
+    }, getMillisecondsUntilNextReset());
+}
+
+function startCountdown(){
+    const el = document.getElementById("countdown");
+    const pad = n => String(n).padStart(2, "0");
+    const tick = () => {
+        const s = Math.floor(getMillisecondsUntilNextReset() / 1000);
+        el.innerText = pad(Math.floor(s/3600)) + ":" + pad(Math.floor(s%3600/60)) + ":" + pad(s%60);
+    };
+    tick();
+    setInterval(tick, 1000);
+}
+
+async function copyKey(){
+    const key = document.getElementById("finalKey").innerText;
+    if(key.includes("Fetching") || key.includes("Offline")) return;
+    
+    try{
+        await navigator.clipboard.writeText(key);
+        const btn = document.getElementById("copyBtn");
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = "COPIED!";
+        btn.style.background = "var(--cyan)";
+        btn.style.color = "#000";
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.style.background = "";
+            btn.style.color = "";
+        }, 2000);
+    }catch(e){
+        alert("Copy failed. Please copy manually.");
+    }
+}
+
+function openTelegram(){ window.location.href = TELEGRAM_LINK; }
+
+window.addEventListener("load", () => {
+    if (checkSecurity()) {
+        generateLockedKey();
+        scheduleDailyRefresh();
+        startCountdown();
+    }
+});
+</script>
+</body>
+</html>

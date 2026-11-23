@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get a Free Key | NIPEX LAG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #030308;
+    --card-bg: rgba(15, 15, 25, 0.6);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text: #FFFFFF;
+    --text-muted: #8A8A9E;
+    
+    --neon-cyan: #00E5FF;
+    --neon-purple: #B000FF;
+    --danger: #FF4757;
+    --dark-border: #252530;
+    
+    --gradient: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    min-height: 100vh;
+    padding: 24px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    position: relative;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    perspective: 1000px; /* For 3D card effect */
+}
+
+/* 1. Cyberpunk Grid Background */
+body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+/* 2. Dynamic Cursor Glow */
+.cursor-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+/* Background Glowing Orbs */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    opacity: 0.5;
+    animation: float 10s infinite ease-in-out alternate;
+}
+.orb-1 { width: 300px; height: 300px; background: var(--neon-cyan); top: -50px; left: -50px; }
+.orb-2 { width: 400px; height: 400px; background: var(--neon-purple); bottom: -100px; right: -100px; animation-delay: -5s; }
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 50px) scale(1.1); }
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: none; }
+}
+
+/* 3. Logo with Breathing Glow */
+.logo-wrapper {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+.logo-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: var(--gradient);
+    border-radius: 50%;
+    filter: blur(15px);
+    opacity: 0.5;
+    animation: pulse 3s infinite alternate;
+}
+@keyframes pulse {
+    0% { opacity: 0.3; transform: scale(0.95); }
+    100% { opacity: 0.7; transform: scale(1.05); }
+}
+.logo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    padding: 3px;
+    background: var(--gradient);
+    position: relative;
+    z-index: 2;
+}
+.logo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background: var(--bg);
+}
+
+h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #fff, #b3b3b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    margin: 0 0 28px;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+}
+
+/* Progress Bar */
+.progress {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 0 10px;
+}
+.step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--neon-cyan);
+}
+
+/* 4. Dynamic Progress Ring */
+.circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid var(--dark-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-muted);
+    position: relative;
+}
+.circle.active {
+    border-color: transparent;
+    color: #000;
+    background: var(--gradient);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+}
+.circle.active::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--neon-cyan);
+    border-right-color: var(--neon-cyan);
+    animation: spinRing 2s linear infinite;
+}
+@keyframes spinRing {
+    100% { transform: rotate(360deg); }
+}
+
+.line {
+    flex: 1;
+    height: 2px;
+    margin: 0 16px;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--dark-border));
+}
+
+/* 5. Interactive 3D Card */
+.card-wrapper {
+    transition: transform 0.1s ease;
+    transform-style: preserve-3d;
+}
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 28px 24px;
+    text-align: left;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Card top subtle neon line */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 10%; right: 10%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    opacity: 0.6;
+}
+
+/* Card inner mouse glow */
+.card::after {
+    content: '';
+    position: absolute;
+    width: 150px; height: 150px;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.15), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 0;
+}
+.card:hover::after { opacity: 1; }
+.card > * { position: relative; z-index: 1; } /* Keep content above glow */
+
+h2 {
+    margin: 0 0 12px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.card-p {
+    margin: 0 0 24px;
+    color: var(--text-muted);
+    font-size: 14.5px;
+    line-height: 1.6;
+}
+
+/* Warning Box */
+.warning {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding: 16px;
+    border-radius: 12px;
+    background: rgba(255, 71, 87, 0.05);
+    border: 1px solid rgba(255, 71, 87, 0.15);
+    border-left: 3px solid var(--danger);
+}
+.warning-icon { font-size: 20px; }
+.warning-title {
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--danger);
+}
+.warning-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+/* 6. Premium Shimmer Button */
+.btn {
+    width: 100%;
+    height: 60px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #000;
+    background: var(--gradient);
+    box-shadow: 0 8px 20px rgba(0, 229, 255, 0.2);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Shimmer Effect */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: all 0.5s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 229, 255, 0.4);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn span {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover span {
+    transform: translateX(5px);
+}
+
+.footer {
+    margin-top: 24px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .container { animation: none; }
+    .orb, .logo-wrapper::before, .circle.active::before { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Global Cursor Glow -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- Background Orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<div class="container">
+    <div class="logo-wrapper">
+        <div class="logo">
+            <img src="./assets/logo.png" alt="NIPEX">
+        </div>
+    </div>
+    
+    <h1>Get a Free Key</h1>
+    <p class="subtitle">Complete the step below to receive your access key.</p>
+
+    <div class="progress">
+        <div class="step">
+            <div class="circle active">1</div>
+            <span>Step 1 of 1</span>
+        </div>
+        <div class="line"></div>
+        <div class="circle"></div>
+    </div>
+
+    <!-- Wrapped in a wrapper for 3D effect -->
+    <div class="card-wrapper" id="cardWrapper">
+        <div class="card" id="interactiveCard">
+            <h2>First Step</h2>
+            <p class="card-p">To continue, click the button below to complete the first step. You will be redirected and then return to this page once finished.</p>
+
+            <div class="warning">
+                <div class="warning-icon">⚠️</div>
+                <div>
+                    <div class="warning-title">Security Notice</div>
+                    <div class="warning-text">The use of bots or any kind of automation will result in your key being banned.</div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="location.href='https://vplink.in/NIPEX-KEY'">
+                CONTINUE TO STEP <span>➜</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="footer">&copy; NIPEX LAG</div>
+</div>
+
+<script>
+    // 1. Cursor Glow Movement (PC Only)
+    const glow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', (e) => {
+        glow.style.opacity = '1';
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+    });
+    document.addEventListener('mouseleave', () => {
+        glow.style.opacity = '0';
+    });
+
+    // 2. 3D Card Tilt Effect
+    const wrapper = document.getElementById('cardWrapper');
+    const card = document.getElementById('interactiveCard');
+
+    wrapper.addEventListener('mousemove', (e) => {
+        const rect = wrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Card Center points
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        // Calculate rotation (max 5 degrees)
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+
+        wrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        
+        // Move the inner glow
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+        card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.05), rgba(15, 15, 25, 0.6) 40%)`;
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+        wrapper.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        card.style.background = `var(--card-bg)`;
+    });
+</script>
+</body>
+</html>
